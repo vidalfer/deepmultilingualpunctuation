@@ -17,7 +17,7 @@ class PunctuationModel():
         text = text.split()
         return text
 
-    def restore_punctuation(self, text, chunk_size=230):        
+    def restore_punctuation(self, text, chunk_size=100):        
         result = self.predict(self.preprocess(text), chunk_size)
         return self.prediction_to_text(result)
         
@@ -26,7 +26,7 @@ class PunctuationModel():
         for i in range(0, len(lst), n-stride):
                 yield lst[i:i + n]
 
-    def predict(self, words, chunk_size=230):
+    def predict(self, words, chunk_size=100):
         overlap = 5
         if len(words) <= chunk_size:
             overlap = 0
